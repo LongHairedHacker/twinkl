@@ -1,7 +1,6 @@
 #include <stdint.h>
 
 #include "config.h"
-#include "util.h"
 #include "twinkl.h"
 
 
@@ -12,8 +11,8 @@ uint8_t twinkl_has_changed;
 
 
 void twinkl_init() {
-	twinkl_memset(twinkl_channels, 0, TWINKL_LEVEL_COUNT * TWINKL_CHANNEL_COUNT);
-	twinkl_memset(twinkl_masks, 0, TWINKL_LEVEL_COUNT * TWINKL_MASK_BYTES);
+	memset(twinkl_channels, 0, TWINKL_LEVEL_COUNT * TWINKL_CHANNEL_COUNT);
+	memset(twinkl_masks, 0, TWINKL_LEVEL_COUNT * TWINKL_MASK_BYTES);
 
 	twinkl_has_changed = 0;
 }
@@ -21,8 +20,8 @@ void twinkl_init() {
 
 void twinkl_process_message(struct twinkl_message *msg) {
 	if(msg->priority < TWINKL_LEVEL_COUNT) {
-		twinkl_memcpy(twinkl_channels[msg->priority], msg->values, TWINKL_CHANNEL_COUNT);
-		twinkl_memcpy(twinkl_masks[msg->priority], msg->mask, TWINKL_MASK_BYTES);
+		memcpy(twinkl_channels[msg->priority], msg->values, TWINKL_CHANNEL_COUNT);
+		memcpy(twinkl_masks[msg->priority], msg->mask, TWINKL_MASK_BYTES);
 
 		twinkl_has_changed = 1;
 	}

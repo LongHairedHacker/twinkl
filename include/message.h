@@ -2,9 +2,9 @@
 #define _MESSAGE_H_
 
 #include <stdint.h>
+#include <string.h>
 
 #include "config.h"
-#include "util.h"
 
 struct twinkl_message {
 
@@ -28,8 +28,8 @@ struct twinkl_message {
  * Static helper functions for messages
  */ 
 static inline void twinkl_init_message(struct twinkl_message *msg) {
-	twinkl_memset(msg->values, 0, TWINKL_CHANNEL_COUNT);
-	twinkl_memset(msg->mask, 0, TWINKL_MASK_BYTES);
+	memset(msg->values, 0, TWINKL_CHANNEL_COUNT);
+	memset(msg->mask, 0, TWINKL_MASK_BYTES);
 	msg->priority = 0;
 }
 
