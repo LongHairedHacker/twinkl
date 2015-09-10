@@ -55,6 +55,7 @@ void twinkl_render(uint8_t *channels) {
 	uint8_t level;
 
 	for(chan = 0; chan < TWINKL_CHANNEL_COUNT; chan++) {
+		channels[chan] = 0;
 		for(level = 0; level < TWINKL_LEVEL_COUNT; level++) {
 			if(get_mask_bit(level,chan)) {
 				channels[chan] = twinkl_channels[level][chan];
